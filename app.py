@@ -90,3 +90,5 @@ print("\n exemple as humain :\n", ' '.join([dictionary_reverse[i] for i in indic
 sizes=[len(i) for i in x_train ]
 
 plt.hist(sizes, bins=400)
+plt.title("Distibution of size [min, max] : ["+str(min(sizes))+","+str(max(sizes))+" ]")
+plt.show()
