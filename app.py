@@ -90,5 +90,29 @@ print("\n exemple as humain :\n", ' '.join([dictionary_reverse[i] for i in indic
 sizes=[len(i) for i in x_train ]
 
 plt.hist(sizes, bins=400)
-plt.title("Distibution of size [min, max] : ["+str(min(sizes))+","+str(max(sizes))+" ]")
+plt.title( "Distibution of size [min, max] : [" + str(min(sizes))+" , "+str(max(sizes))+" ]" )
 plt.show()
+
+
+# Vectorizing x_train:
+    
+one_hote_mat=np.zeros((x_train.shape[0], 10000))
+
+for i, sentence in enumerate(x_train):
+    for word in sentence :
+        one_hote_mat[i,word]=1
+x_train=one_hote_mat        
+
+
+# Vectorizing x_test:
+    
+one_hote_mat=np.zeros((x_test.shape[0], 10000))
+
+for i, sentence in enumerate(x_test):
+    for word in sentence :
+        one_hote_mat[i,word]=1
+x_test=one_hote_mat        
+
+    
+
+
