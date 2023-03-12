@@ -11,11 +11,11 @@ import tensorflow.keras.datasets.imdb as imdb
 project_dir= "C:/Users/pc/Nextcloud/Python/GITHUB/Sentimental_analysis_on_hot_encoding/"
 #data_dir=project_dir+"data/"
 
-vocab_size=10000
+vocab_size=20000
 
 hide_most_frequently=0
 
-epochs=10
+epochs=20
 batch_size=512
 
 "exemple one hot encoding"
@@ -137,10 +137,30 @@ save_model=ft.keras.callbacks.ModelCheckpoint(filepath=project_dir, save_best_on
 
 ## train model 
 
-model.fit(x_train, y_train,batch_size=batch_size,
+history=model.fit(x_train, y_train,batch_size=batch_size,
           epochs=epochs,
           validation_data=(x_test,y_test),
           callbacks=[save_model])
+
+
+history.history['val_accuracy']
+history.epoch
+
+plt.subplot(2,1,1)
+plt.plot(history.epoch, history.history['loss'], label="Loss train")
+plt.plot(history.epoch, history.history['val_loss'], label="Loss test")
+plt.xlabel("Epoch")
+plt.ylabel("Loss")
+plt.legend()
+
+plt.subplot(2,1,2)
+plt.plot(history.epoch, history.history['accuracy'], label="Accuracy train")
+plt.plot(history.epoch, history.history['val_accuracy'], label="Accuracy test")
+plt.xlabel("Epoch")
+plt.ylabel("Accuracy")
+plt.legend()
+
+plt.show()
 
 
 model.evaluate(x_test, y_test)
