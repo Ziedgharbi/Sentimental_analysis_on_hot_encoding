@@ -96,7 +96,7 @@ plt.show()
 
 # Vectorizing x_train:
     
-one_hote_mat=np.zeros((x_train.shape[0], 10000))
+one_hote_mat=np.zeros((x_train.shape[0], vocab_size))
 
 for i, sentence in enumerate(x_train):
     for word in sentence :
@@ -106,7 +106,7 @@ x_train=one_hote_mat
 
 # Vectorizing x_test:
     
-one_hote_mat=np.zeros((x_test.shape[0], 10000))
+one_hote_mat=np.zeros((x_test.shape[0], vocab_size))
 
 for i, sentence in enumerate(x_test):
     for word in sentence :
@@ -116,3 +116,31 @@ x_test=one_hote_mat
     
 
 
+# model devolepment 
+
+model=keras.Sequential()
+
+model.add(keras.layers.Input(shape=(vocab_size,)))
+model.add(keras.layers.Dense(32,activation='relu'))
+model.add(keras.layers.Dense(32,activation='relu'))
+model.add(keras.layers.Dense(1,activation='sigmoid'))
+
+model.compile(optimizer="rmsprop",
+              loss="binary_crossentropy",
+              metrics=["accuracy"])
+
+model.summary()
+
+## create callback to save best model
+save_model=ft.keras.callbacks.ModelCheckpoint(filepath=project_dir, save_best_only=True)
+
+
+## train model 
+
+model.fit(x_train, y_train,batch_size=batch_size,
+          epochs=epochs,
+          validation_data=(x_test,y_test),
+          callbacks=[save_model])
+
+
+model.evaluate(x_test, y_test)
