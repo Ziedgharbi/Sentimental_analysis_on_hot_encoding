@@ -6,7 +6,7 @@ import tensorflow as ft
 import tensorflow.keras as keras
 import tensorflow.keras.datasets.imdb as imdb
 
-from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
+from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix, classification_report
 
 project_dir= "C:/Users/pc/Nextcloud/Python/GITHUB/Sentimental_analysis_on_hot_encoding/"
 #data_dir=project_dir+"data/"
@@ -167,3 +167,5 @@ confu_matrix= confusion_matrix(y_test, y_pred)
 disp=ConfusionMatrixDisplay(confu_matrix)
 disp.plot()
 
+report=classification_report(y_test, y_pred)
+print(report)
