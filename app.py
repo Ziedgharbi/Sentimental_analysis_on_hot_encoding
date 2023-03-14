@@ -15,7 +15,7 @@ vocab_size=20000
 
 hide_most_frequently=0
 
-epochs=20
+epochs=10
 batch_size=512
 
 "exemple one hot encoding"
@@ -44,6 +44,8 @@ data= {  f'{sentence[i]:.^10}':onehote_mat[:,i] for i,w in enumerate(sentence_ve
 df=pd.DataFrame(data)
 df.index=dictionnary.keys()
 df.style.format(precision=0).highlight_max(axis=0).set_properties(**{'text-align' :'center'})
+
+
 
 """--------------- real exemple --------------"""
 
@@ -157,10 +159,9 @@ model.evaluate(x_test, y_test)
 
 y_pred=model.predict(x_test)
 
-## confusion matrix plot
+## confusion matrix plo
 
-y_pred[y_pred>=0.5]=1
-y_pred[y_pred<0.5]=0
+y_pred= [ 1 if x>=0.5 else 0 for x in y_pred]
 
 confu_matrix= confusion_matrix(y_test, y_pred)
 
