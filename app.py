@@ -45,8 +45,6 @@ df=pd.DataFrame(data)
 df.index=dictionnary.keys()
 df.style.format(precision=0).highlight_max(axis=0).set_properties(**{'text-align' :'center'})
 
-
-
 """--------------- real exemple --------------"""
 
 #load data 
