@@ -159,7 +159,10 @@ y_pred=model.predict(x_test)
 
 ## confusion matrix plo
 
-y_pred= [ 1 if x>=0.5 else 0 for x in y_pred]
+y_pred= [ 1 if x>=0.5 else 0 for x in y_pred] 
+
+
+
 
 confu_matrix= confusion_matrix(y_test, y_pred)
 
