@@ -46,7 +46,6 @@ df.index=dictionnary.keys()
 df.style.format(precision=0).highlight_max(axis=0).set_properties(**{'text-align' :'center'})
 
 """--------------- real exemple --------------"""
-
 #load data 
 (x_train, y_train), (x_test, y_test) =  imdb.load_data(num_words=vocab_size, skip_top=hide_most_frequently)
 
@@ -160,9 +159,6 @@ y_pred=model.predict(x_test)
 ## confusion matrix plo
 
 y_pred= [ 1 if x>=0.5 else 0 for x in y_pred] 
-
-
-
 
 confu_matrix= confusion_matrix(y_test, y_pred)
 
