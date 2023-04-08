@@ -68,7 +68,6 @@ dictionary.update({"<pad>":0, "<start>":1, "<unknown>":2, "<undef>":3})
 #reverse dictionary
 dictionary_reverse= {i:w for w,i in dictionary.items() }
 
-
 #see some exemple 
 for i in range(350,360):
     print(i," : ",dictionary_reverse[i] )
